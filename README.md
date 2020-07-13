@@ -1,5 +1,5 @@
 =======
-# PROYECTO WWW
+# PROYECTO
 Nota: Tener instalado los siguiente: 
 - Xampp con MySQL https://www.apachefriends.org/es/index.html
 - Angular cli https://cli.angular.io/
