@@ -1,0 +1,84 @@
+.card-video{
+    display: block;
+    cursor: pointer;
+    background: #000;
+}
+
+.card-video:hover{
+    border: 1px solid #FFF;
+    opacity: 0.9;
+    
+}
+.card-video video{
+    -moz-transition: all 0.3s linear 0s;
+  	-ms-transition: all 0.3s linear 0s;
+  	-o-transition: all 0.3s linear 0s;
+  	transition: all 0.3s linear 0s;
+}
+
+.card-video video:hover{
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.card-body{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+    width: 100%;
+    height: 30%;
+
+    background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.84) 85%, #000);
+    padding: 114px 15px 0 1px;
+    border-radius: 3px;
+}
+
+.card-body h5{
+    color: #FFF
+}
+
+.card-body p{
+    margin: -10px 10px 10px 10px;
+    color: #888;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1100px) {
+    /* For tablets: */
+    .card-body{
+        height: 36%;
+    }
+    .card-body h5{
+        font-size: 16px;
+    }
+  }
+
+@media only screen and (max-width: 767px) {
+    /* For tablets: */
+    .card-body{
+        height: 20%;
+    }
+
+  }
+
+  @media only screen and (max-width: 430px) {
+    /* For tablets: */
+    .card-body{
+        height: 20%;
+    }
+    .card-body h5{
+        font-size: 14px;
+    }
+    .card-body p{
+        font-size: 12px;
+    }
+  }
+
+  @media only screen and (max-width: 340px) {
+    /* For tablets: */
+    .card-body{height: 20%}
+    .card-body h5{font-size: 10px}
+    .card-body p{font-size: 0px}
+  }
+  

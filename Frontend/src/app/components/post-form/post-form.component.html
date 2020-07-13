@@ -1,0 +1,26 @@
+<br>
+<div class="col-lg-4 mx-auto">
+    <div class="card">
+        <div class="card-header">
+            Subir Video
+        </div>
+        <div class="card-body">
+            <form (submit)="uploadFile(title, description)">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Titulo" required #title>
+                    <div class="form-group">
+                        <textarea class="form-control" id="" rows="2" placeholder="Descripcion" required #description></textarea>
+                    </div>
+
+                    <input type="file" class="d-none" (change)="onFileSelect($event)" #fileInput>
+                    <img [src]="fileSelected || 'assets/Upload.png'" class="img-fluid" alt="No-image" (click)="fileInput.click()">
+
+                    <button class="btn btn-primary btn-block">
+                        Subir
+                    </button>
+                    
+                </div>
+            </form>
+        </div>
+    </div>
+</div>  

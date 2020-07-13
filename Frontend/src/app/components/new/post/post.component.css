@@ -1,0 +1,82 @@
+.card{
+    background: black;
+    min-width: auto;
+    height: auto;
+}
+
+h5{
+    color: #FFF;
+    font-weight: bold; 
+    border-bottom: 1px solid rgba(121, 121, 121, 0.5);
+}
+
+.card-text{
+    font-size: 16px;
+}
+
+.category{
+    color: #e8b50c;
+}
+
+p{
+    margin: 2px;
+    color: #888;
+    width: 100%;
+}
+
+.date{
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    z-index: 1;
+    background: #e8ad0c;
+    width: 50px;
+    height: 50px;
+    padding: 12px 0;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    color: #FFFFFF;
+    font-weight: 700;
+    text-align: center;
+    -webkti-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: 'Lato', Arial, sans-serif;
+}
+.date .day {
+    font-size: 18px; 
+    line-height: 10px
+}
+.date .month {
+  	font-size: 12px;
+   	text-transform: uppercase;
+}
+
+@media only screen and (max-width: 575px) {
+    /* For tablets: */
+    .card:nth-child(2){
+        float: left;
+        width: 33.3%;
+    }
+    .card:nth-child(3){
+        float: left;
+        width: 33.3%;
+     }
+     .card:nth-child(4){
+        float: left;
+        width: 33.3%;
+     }
+
+     .date{
+        width: 30px;
+        height: 30px;
+        top: 10px;
+        right: 10px;
+        padding: 6px 0;
+     }
+     .date .day{font-size: 14px;}
+     .date .month{font-size: 8px;}
+     h5{font-size: 15px; padding-bottom: 2px; margin: 2px;}
+     .card-text{font-size: 14px}
+  }
