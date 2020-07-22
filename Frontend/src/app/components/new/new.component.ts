@@ -27,15 +27,18 @@ export class NewComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     const data = 'some text';
     
-    this.postService.getPosts()
-      .subscribe(
-        res => {
-          const blob = new Blob();
-          this.posts = <Post[]>res;
-        },
-        err => console.log(err)
-      )
-  }
+    const obs = this.postService.getPosts();
+    obs.subscribe(
+      (res : Post[]) => {
+        //const blob = new Blob();
+        console.log(res);
+        this.posts = res;
+        //array buffer => Objeto mandar a la etiqueta video
+        //console.log(this.posts.);
+      },
+      err => console.log(err)
+    )
+    }
 
   ngAfterViewInit() {
     

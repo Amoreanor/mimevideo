@@ -4,15 +4,20 @@
             <div class="day">24</div>
             <div class="month">Ene</div>
         </div>
-        <div class="embed-responsive embed-responsive-16by9 card bd-content m-0">
-            <video class="card-img-top video1" #video [src]="'http://localhost:3000/'+ post.url"></video>
+
+        <div 
+            class="embed-responsive embed-responsive-16by9 card bd-content m-0" 
+            *ngFor="let video of videos"
+        >
+            <video class="card-img-top video1" [src]="'http://localhost:3000/'+ video"></video>
         </div>
-        <div class="embed-responsive embed-responsive-16by9 card bd-content m-0">
-            <video class="card-img-top" #video [src]="'http://localhost:3000/'+ post.url"></video>
+
+        <div 
+            class="embed-responsive embed-responsive-16by9 card bd-content m-0" 
+        >
+            <video controls class="card-img-top video1" [src]=""></video>
         </div>
-        <div class="embed-responsive embed-responsive-16by9 card bd-content m-0">
-            <video class="card-img-top" #video [src]="'http://localhost:3000/'+ post.url" ></video>
-        </div>
+        
     </div>
     <div class="">
       <h5 class="mx-2">{{post.title}}</h5>

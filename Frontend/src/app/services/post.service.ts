@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { formatDate } from '@angular/common';
 
 import { Post } from '../interfaces/Post';
+//import { promise } from 'protractor';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +12,7 @@ import { Post } from '../interfaces/Post';
 export class PostService {
 
   URI = 'http://localhost:3000/posts';
+  URIV = 'http://localhost:3000';
 
   constructor(private http: HttpClient) { }
 
@@ -21,10 +24,18 @@ export class PostService {
     return this.http.post(this.URI, fd);
   }
 
-  getPosts(){
-    const urlblob = "";
+  getPosts(): Observable<Post[]> {
+    //const urlblob = "";
     return this.http.get<Post[]>(this.URI);
   }
+
+  getVideo(id: string){
+    let headers = new HttpHeaders(); // 
+    return this.http.get(`${this.URIV}/${id}`, {
+      headers: headers,
+      responseType: "arraybuffer"
+    });
+   }
 
   getPost(id: string){
     return this.http.get<Post>(`${this.URI}/${id}`);
