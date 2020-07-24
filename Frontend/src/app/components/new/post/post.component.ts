@@ -3,7 +3,7 @@ import { Post } from 'src/app/interfaces/Post';
 import { Router } from '@angular/router';
 import { Url } from 'url';
 import { PostService } from 'src/app/services/post.service'
-import {DomSanitizer} from '@angular/platform-browser';
+import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-post',
@@ -15,12 +15,12 @@ export class PostComponent implements OnInit, AfterViewInit {
   @Input('datos') post: Post;
   //@ViewChildren('cardsvideo') video: QueryList<ElementRef>;
   videos: string[] = [];
-  srcVideo: string;
+  srcVideo: SafeUrl;
 
   constructor(
     private router: Router, 
     private postService: PostService,
-    private sanitizer:DomSanitizer
+    private sanitizer: DomSanitizer
     ) { 
   }
 
@@ -28,18 +28,21 @@ export class PostComponent implements OnInit, AfterViewInit {
     for (let i = 0; this.videos.length < 2; i++)
     {
       this.videos.push(this.post.url);
-      console.log(this.post);
+      //console.log(this.post);
     }
 
     const id = this.videos[0];
     this.postService.getVideo(id)
       .subscribe((res : any) => {
-        console.log(res);
         const blob = new Blob([res]);
-        this.srcVideo = URL.createObjectURL(blob);
+        const urlblob = URL.createObjectURL(blob);
+
+        this.srcVideo = this.sanitizer.bypassSecurityTrustResourceUrl(urlblob) ;
+
+        //URL.revokeObjectURL(urlblob)
+        console.log(this.srcVideo);
       },
       err => console.log(err));
-
   }
 
   sanitize(url:string){
