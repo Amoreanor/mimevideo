@@ -30,12 +30,12 @@ export class PostService {
   }
 
   getVideo(id: string){
-    let headers = new HttpHeaders(); // 
+    let headers = new HttpHeaders();
     return this.http.get(`${this.URIV}/${id}`, {
       headers: headers,
       responseType: "arraybuffer"
     });
-   }
+  }
 
   getPost(id: string){
     return this.http.get<Post>(`${this.URI}/${id}`);

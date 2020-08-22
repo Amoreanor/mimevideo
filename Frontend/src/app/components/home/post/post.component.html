@@ -1,0 +1,27 @@
+<div class="card text-center shadow  rounded" (click)="selectedCard(post.id)">
+    <div class="card-group m-0" >
+        <div class="date">
+            <div class="day">24</div>
+            <div class="month">Ene</div>
+        </div>
+
+        <div
+            class=" embed-responsive-16by9 card bd-content m-0"
+            *ngFor="let image of images"
+        >
+            <img class="card-img-top video1" [src]="image" />
+        </div>
+    </div>
+    <div class="">
+      <h5 class="mx-2">{{post.title}}</h5>
+      <div class="container">
+          <div class="row card-text">
+                <div class="col-12 col-sm-4 "><span class="category" >Categoria</span>  <span style="color: #888;"> / </span> <span style="color: #e80c7a;">video</span></div>
+                <div class="col-12 col-sm-4 py-0 "><p class="d-inline-block text-truncate font-weight-lighs">{{post.description}}</p></div>
+                <div class="col-12 col-sm-4"></div>
+          </div>
+      </div>
+    </div>
+</div>
+<br>
+<br>

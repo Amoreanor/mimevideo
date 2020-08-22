@@ -2,9 +2,7 @@ import {Router } from 'express';
 
 const router = Router();
 
-import { indexRouter } from '../controllers/index.controllers'
-
-import multer from '../lib/multer';
+import { indexRouter } from '../controllers/index.controllers';
 
 router.route('/')
     .get(indexRouter);

@@ -1,65 +1,71 @@
-import { Request, Response } from 'express';
+import { Request, Response, json } from 'express';
+import { generatorImages } from '../services/generatorImages.service';
 
 import { connect } from '../database';
 import { Post } from '../interface/Post';
 import fs from 'fs-extra';
 
 import path from 'path';
+import { FieldPacket,  } from 'mysql2';
 
-export async function preview(req: Request, res: Response){
-    const id = req.params.postId;
-
-    if(req.query.key=='13fg345v456'){
-        fs.readFile('./upload/'+id, (err,data)=>{
-            res.send(data);
-        });
-    }
-    console.log('Holas');
+export async function debug(req: Request, res: Response): Promise<Response>{
+    return res.json('Probar esto');
 }
 
 export async function getPosts(req: Request, res: Response): Promise<Response>{
     const conn = await connect();
     const posts = await conn.query('SELECT * FROM VIDEOS');
-    return res.json(posts[0]);
+    const post = posts[0];
+
+    return res.json(post);
 }
 
 export async function createPosts(req: Request, res: Response): Promise<Response>{
+    console.log('entro in create posts')
     const conn = await connect();
     const newPost: Post = req.body;
 
     newPost.url = req.file.path;
-    
+
+    generatorImages(newPost.url);
+
+    console.log(newPost)
+
     await conn.query('INSERT INTO videos SET ?', [newPost]);
     return res.json({
         message: 'Post video creado'
     });
 }
 
-export async function getPost(req: Request, res: Response): Promise<any>{
+export async function getPost(req: Request, res: Response): Promise<void>{
     const id = req.params.postId;
     const conn = await connect();
-    
-    //const post = await conn.query('SELECT * FROM videos WHERE id = ?', id);
 
-    await conn.query({
-        sql: 'SELECT * FROM videos WHERE id = ?',
-        timeout: 40000, // 40s
-        values: [id]
-      }, function (error: any, results: any, fields: any) {
-        res.json(results[0]);
-      });
+    const [rows, fields]: [Post[], FieldPacket[]] =  await conn.query('SELECT * FROM videos WHERE id = ?', [id]);
+
+    res.json(rows[0]);
 }
 
 export async function deletePost(req: Request, res: Response): Promise<Response>{
     const id = req.params.postId;
     const conn = await connect();
 
-    const [rows, fields] = await conn.execute('SELECT url FROM videos where id = '+id);
+    const url = await conn.query('SELECT * FROM videos WHERE id = ?', [id]);
+    const [rows, fields]: [Post[], FieldPacket[]] = await conn.execute('SELECT url FROM videos where id = '+ id);
 
-    fs.unlink(path.resolve(rows[0].url));
+    const list = rows[0].url.split('\\');
+    const idsucio = list[1];
+    const idlink = idsucio.slice(0,-4);
 
-    const video = await conn.query('DELETE FROM videos WHERE id = ?', [id]);     
-    
+    //Delete File
+    //fs.unlink(path.resolve(rows[0].url));
+    for (let i = 1; i >= 3; i++){
+        const urlresolve = 'uploads\\thumbail\\'+idlink+'_'+i+'.png';
+        console.log(urlresolve)
+        fs.unlink(path.resolve(urlresolve));
+    }
+    //Delete de BD
+    const video = await conn.query('DELETE FROM videos WHERE id = ?', [id]);
     return res.json({
         message: 'Eliminado'
     });
@@ -69,7 +75,6 @@ export async function updatePost(req: Request, res: Response): Promise<Response>
     const id = req.params.postId;
     const updatePost: Post = req.body;
     const conn = await connect();
-    
 
     try {
         const updateVideo = await conn.query('UPDATE videos SET ? WHERE id = ?',[updatePost, id]);
@@ -77,7 +82,7 @@ export async function updatePost(req: Request, res: Response): Promise<Response>
             message: 'Actualizado'
         });
     } catch (error) {
-        return res.json({
+        return res.status(505).json({
             message: 'Error'
         });
     }

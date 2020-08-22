@@ -5,6 +5,7 @@ import { Users} from '../interface/Users';
 import { encryptPassword, matchPassword } from '../lib/bcrypt'
 
 import jwt from 'jsonwebtoken';
+import { FieldPacket } from 'mysql2';
 
 export async function signupUser(req: Request, res: Response): Promise<Response>{
     const conn = await connect();
@@ -28,16 +29,21 @@ export async function signUser(req: Request, res: Response): Promise<Response>{
 
     //Mejorar Seguridad
     const row = await conn.query('select * from users where name = ?', [newUser.name]);
-    const [rows, fields] = await conn.execute('select * from users where name = ?', [newUser.name]);
+    const [rows, fields]: [Users[], FieldPacket[]] = await conn.execute('select * from users where name = ?', [newUser.name]);
 
     if(row.length < 0) return res.status(401).send("Name incorrecto");
 
-    const validpass: boolean = await matchPassword(newUser.password, rows[0].password);
+    const validpass: boolean = await matchPassword(newUser.password, rows[0].password );
 
     if(!validpass) return res.status(401).send("Password incorrecto");
-      
+
     const token = jwt.sign({id: rows[0].id}, process.env.secretKey || 'tokentest',{
-      expiresIn: 60 * 60
+      expiresIn: '1h'
+    });
+
+    jwt.verify(token, process.env.secretKey || 'tokentest', (err, decoded) => {
+      console.log(err);
+      console.log(decoded);
     });
 
     return res.header('token', token).status(200).json({

@@ -11,6 +11,6 @@ router.route('/signin')
 
 router.route('/signup')
     .post(signupUser)
-    
+
 
 export default router;

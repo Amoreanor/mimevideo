@@ -6,7 +6,7 @@ import path from 'path';
 
 // Rutas
 import IndexRoutes from './routes/index.routes';
-import postRoutes from './routes/posts.router';               
+import postRoutes from './routes/posts.router';
 import addRoutes from './routes/add.router';
 import usersRoutes from './routes/users.router';
 
