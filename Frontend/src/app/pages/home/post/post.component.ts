@@ -37,12 +37,27 @@ export class PostComponent implements OnInit {
     })
   }
 
-  async generateListImages(videoBlob) {
+  // async generateListImages(videoBlob) {
+  //   const images = [];
+  //   let durationList = [0, 50, 100];
+  //   for(let i = 0; i < 3; i++) {
+  //     let image = await this.imageService.generateImages(videoBlob, durationList[i]);
+  //     images.push(image);
+  //   }
+  //   this.images = images;
+  // }
+
+  generateListImages(videoBlob) {
     const images = [];
     let durationList = [0, 50, 100];
-    for(let i = 0; i < 3; i++) {
-      let image = await this.imageService.generateImages(videoBlob, durationList[i]);
-      images.push(image);
+    for(let i = 1; i <= 3; i++) {
+      let image = this.post.url;
+      let urlserve = 'http://localhost:3000/';
+
+      const list = image.split('\\');
+      const urlimg = urlserve+list[0]+'\\thumbail\\'+list[1].slice(0,-4)+'_'+i+'.png';
+
+      images.push(urlimg);
     }
     this.images = images;
   }

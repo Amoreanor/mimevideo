@@ -7,11 +7,11 @@ interface HtmlInputEvent extends Event {
 }
 
 @Component({
-  selector: 'app-post-form',
-  templateUrl: './post-form.component.html',
-  styleUrls: ['./post-form.component.css']
+  selector: 'app-uploads',
+  templateUrl: './uploads.component.html',
+  styleUrls: ['./uploads.component.css']
 })
-export class PostFormComponent implements OnInit {
+export class UploadsComponent implements OnInit {
 
   file: File;
   fileSelected:string | ArrayBuffer;
@@ -27,10 +27,8 @@ export class PostFormComponent implements OnInit {
 
     if(event.target.files && event.target.files[0] ){
       this.file = <File>event.target.files[0];
-      // Mostrar Imagen
       const reader =  new FileReader();
       reader.onload = e => this.fileSelected = reader.result;
-      
       reader.readAsDataURL(this.file);
     }
   }
