@@ -15,6 +15,7 @@ export class PostComponent implements OnInit {
 
   @Input('datos') post: Post;
   images: string[] = [];
+  URI = 'http://localhost:3000/';
 
   constructor(
     private router: Router,
@@ -50,13 +51,10 @@ export class PostComponent implements OnInit {
   generateListImages(videoBlob) {
     const images = [];
     let durationList = [0, 50, 100];
+    let image = this.post.url;
     for(let i = 1; i <= 3; i++) {
-      let image = this.post.url;
-      let urlserve = 'http://localhost:3000/';
-
       const list = image.split('\\');
-      const urlimg = urlserve+list[0]+'\\thumbail\\'+list[1].slice(0,-4)+'_'+i+'.png';
-
+      const urlimg = this.URI+list[0]+'\\thumbail\\'+list[1].slice(0,-4)+'_'+i+'.png';
       images.push(urlimg);
     }
     this.images = images;
