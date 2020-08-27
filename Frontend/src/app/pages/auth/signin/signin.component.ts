@@ -3,7 +3,6 @@ import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 
 import { User } from '../../../interfaces/User';
-import { Route } from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-signin',
@@ -12,7 +11,8 @@ import { Route } from '@angular/compiler/src/core';
 })
 export class SigninComponent implements OnInit {
 
-  public user = {} as User;
+  public user = {name: '',
+password: ''};
 
   constructor(
     private authService: AuthService,
@@ -22,11 +22,12 @@ export class SigninComponent implements OnInit {
   }
 
   signIn(){
+    console.log(this.user)
     this.authService.signIn(this.user)
       .subscribe(
         res =>{
           localStorage.setItem('token', res.token);
-          this.router.navigate(['/post/new']);
+          this.router.navigate(['/post/uploads']);
         },
         err => console.log(err)
       )

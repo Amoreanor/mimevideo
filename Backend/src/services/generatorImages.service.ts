@@ -26,16 +26,8 @@ export function generatorImages(urlvideo: string): string[] {
         // Will take screens at 20%, 40%, 60% and 80% of the video
         count: 3,
         filename: id,
-        folder: 'uploads/thumbail/'
+        folder: 'uploads/thumbail/',
+        size: '600x500'
     });
-
-    //console.log(id);
-
-    // const tg = new ThumbnailGenerator({
-    //     sourcePath: urlvideo,
-    //     thumbnailPath: '/tmp/',
-    //     tmpDir: 'uploads/images/' //only required if you can't write to /tmp/ and you need to generate gifs
-    // });
-
     return listImages;
 }

@@ -2,8 +2,9 @@ import {Request, Response, NextFunction} from 'express';
 import jwt from 'jsonwebtoken';
 
 export const TokenValidation = (req: Request, res: Response, next: NextFunction) =>{
-    const token = req.header('token');
+    const token = req.header('Autorization');
     console.log(token);
+    
     console.log(process.env.secretKey);
     if(!token) return res.status(401).json('Necesitas Permisos');
 
@@ -16,5 +17,4 @@ export const TokenValidation = (req: Request, res: Response, next: NextFunction)
         next();
     });
     console.log(payload);
-
 }

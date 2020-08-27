@@ -1,8 +1,8 @@
 <br>
 <div class="col-lg-4 mx-auto">
     <div class="card">
-        <div class="card-header">
-            Subir Video
+        <div class="card-header" >
+            <h3 style="text-align:center;" >Añadir contenido</h3>
         </div>
         <div class="card-body">
             <form (submit)="uploadFile(title, description)">
@@ -12,9 +12,23 @@
                         <textarea class="form-control" id="" rows="2" placeholder="Descripcion" required #description></textarea>
                     </div>
 
-                    <input type="file" class="d-none" (change)="onFileSelect($event)" #fileInput>
-                    <img [src]="fileSelected || 'assets/Upload.png'" class="img-fluid" alt="No-image" (click)="fileInput.click()">
+                    
+                    <div (click)="botton()" class="centered" required>  
+                        <div class="plus"  id="plus">
+                          <div class="plus__line plus__line--v">
+                            <a class="plus__link fa fa-film" (click)="fileVideo.click()">
+                                <input (click)="botton()" type="file" class="d-none" (change)="onFileSelect($event)" #fileVideo></a>
+                            <a class="plus__link fa fa-camera" (click)="fileImage.click()">
+                                <input (click)="botton()" type="file" class="d-none" (change)="onFileSelect($event)" #fileImage></a>
+                          </div>
+                          <div class="plus__line plus__line--h"></div>
+                        </div>
+                    </div>
+                    <br>
+                    <img [src]="fileSelected" class="img-fluid" alt="">
 
+                    <!-- <img [src]="fileSelected || 'assets/Upload.png'" class="img-fluid" alt="No-image" (click)="fileInput.click()"> -->
+                    <br>
                     <button class="btn btn-primary btn-block">
                         Subir
                     </button>

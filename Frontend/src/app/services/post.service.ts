@@ -16,12 +16,20 @@ export class PostService {
 
   constructor(private http: HttpClient) { }
 
-  createPots(title: string, description: string, file: File){
+  createImages(title: string, description: string, file: File){
     const fd = new FormData();
     fd.append('title', title);
     fd.append('description', description);
     fd.append('file', file);
-    return this.http.post(this.URI, fd);
+    return this.http.post(this.URIV+'/uploads/images', fd);
+  }
+
+  createVideo(title: string, description: string, file: File){
+    const fd = new FormData();
+    fd.append('title', title);
+    fd.append('description', description);
+    fd.append('file', file);
+    return this.http.post(this.URIV+'/uploads/videos', fd);
   }
 
   getPosts(): Observable<Post[]> {

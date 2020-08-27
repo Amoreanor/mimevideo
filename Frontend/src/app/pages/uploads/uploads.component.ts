@@ -15,7 +15,7 @@ export class UploadsComponent implements OnInit {
 
   file: File;
   fileSelected:string | ArrayBuffer;
-  
+
 
   constructor(private postService: PostService) { }
 
@@ -23,19 +23,34 @@ export class UploadsComponent implements OnInit {
   }
 
   onFileSelect(event: HtmlInputEvent): void{
-    const video = document.querySelector("#video");
 
     if(event.target.files && event.target.files[0] ){
       this.file = <File>event.target.files[0];
       const reader =  new FileReader();
       reader.onload = e => this.fileSelected = reader.result;
       reader.readAsDataURL(this.file);
+      console.log(this.file)
     }
   }
 
   uploadFile(title: HTMLInputElement, description: HTMLTextAreaElement): boolean{
-    this.postService.createPots(title.value, description.value, this.file)
+    if(this.file.type == "video/mp4"){
+      console.log('Entro a video')
+      this.postService.createVideo(title.value, description.value, this.file)
       .subscribe(res => console.log(res), err => console.log(err) )
+    }else{
+      console.log('Entro a imagen: '+this.file)
+      this.postService.createImages(title.value, description.value, this.file)
+      .subscribe(res => console.log(res), err => console.log(err) )
+    }
+    
       return false;
   }
+
+  botton(event: HtmlInputEvent){
+    var plus = document.getElementById('plus');
+    plus.classList.toggle('plus--active');
+    
+  }
+
 }

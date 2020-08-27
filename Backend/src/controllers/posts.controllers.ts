@@ -20,21 +20,35 @@ export async function getPosts(req: Request, res: Response): Promise<Response>{
     return res.json(post);
 }
 
-export async function createPosts(req: Request, res: Response): Promise<Response>{
-    console.log('entro in create posts')
+export async function createVideo(req: Request, res: Response): Promise<Response>{
     const conn = await connect();
     const newPost: Post = req.body;
+    if (!req.file) return res.send('Please upload a file')
+    else{
+        newPost.url = req.file.path;
+        generatorImages(newPost.url);
 
-    newPost.url = req.file.path;
+        await conn.query('INSERT INTO videos SET ?', [newPost]);
+        return res.json({
+            message: 'Post imagenes creado'
+        });
+    }
+}
 
-    generatorImages(newPost.url);
+export async function createImages(req: Request, res: Response): Promise<Response>{
+    const conn = await connect();
+    const newPost: Post = req.body;
+    console.log(req.body)
+    console.log(req.file)
 
-    console.log(newPost)
-
-    await conn.query('INSERT INTO videos SET ?', [newPost]);
-    return res.json({
-        message: 'Post video creado'
-    });
+    if (!req.file) return res.send('Please upload a file')
+    else{
+        newPost.url = req.file.path;
+        await conn.query('INSERT INTO videos SET ?', [newPost]);
+        return res.json({
+            message: 'Post video creado'
+        });
+    }
 }
 
 export async function getPost(req: Request, res: Response): Promise<void>{
@@ -57,15 +71,16 @@ export async function deletePost(req: Request, res: Response): Promise<Response>
     const idsucio = list[1];
     const idlink = idsucio.slice(0,-4);
 
-    //Delete File
-    //fs.unlink(path.resolve(rows[0].url));
-    for (let i = 1; i >= 3; i++){
-        const urlresolve = 'uploads\\thumbail\\'+idlink+'_'+i+'.png';
-        console.log(urlresolve)
-        fs.unlink(path.resolve(urlresolve));
-    }
     //Delete de BD
     const video = await conn.query('DELETE FROM videos WHERE id = ?', [id]);
+
+    //Delete File
+    fs.unlink(path.resolve(rows[0].url));
+    for (let i = 1; i <= 3; i++){
+        const urlresolve = 'uploads\\thumbail\\'+idlink+'_'+i+'.png';
+        await fs.unlink(path.resolve(urlresolve));
+    }
+
     return res.json({
         message: 'Eliminado'
     });

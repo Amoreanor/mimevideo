@@ -9,6 +9,7 @@ import IndexRoutes from './routes/index.routes';
 import postRoutes from './routes/posts.router';
 import addRoutes from './routes/add.router';
 import usersRoutes from './routes/users.router';
+import uploadsRoutes from './routes/uploads.routers';
 
 export class App{
 
@@ -38,6 +39,7 @@ export class App{
         this.app.use( '/uploads', addRoutes);
         this.app.use( '/posts', postRoutes);
         this.app.use( '/users', usersRoutes);
+        this.app.use( '/uploads', uploadsRoutes);
     }
 
     public(){

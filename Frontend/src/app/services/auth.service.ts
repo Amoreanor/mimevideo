@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router'
 
-import { User } from '../interfaces/User';
+import { User } from '../../app/interfaces/User';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,11 +17,11 @@ export class AuthService {
     private router: Router
     ) { }
 
-  signUp(user){
+  signUp(user): Observable<any>{
     return this.http.post<User>(this.URI + '/signup', user);
   }
 
-  signIn(user){
+  signIn(user): Observable<any>{
     return this.http.post<User>(this.URI + '/signin', user);
   }
 
