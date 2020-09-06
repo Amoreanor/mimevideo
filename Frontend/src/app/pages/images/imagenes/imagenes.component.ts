@@ -20,7 +20,6 @@ export class ImagenesComponent implements OnInit {
   constructor(private postService: PostService, private router: Router) { }
 
   ngOnInit() {
-    const tipo: number = 2;
     this.postService.getPosts()
       .subscribe(
         (res: Post[]) => {
@@ -28,7 +27,6 @@ export class ImagenesComponent implements OnInit {
           for(let i=0; i<res.length; i++){
             if(res[i].tipo == "images"){
               this.posts[j] = res[i];
-              console.log(this.posts)
               j = j+1;
             }
           }
@@ -36,17 +34,4 @@ export class ImagenesComponent implements OnInit {
         err => console.log(err)
       )
   }
-
-
-
-  listarimagenes(url: string){
-    const listaimg = url.split(',')
-
-    console.log(listaimg);
-  }
-
-  selectedCard(id: string){
-    this.router.navigate(['/post', id]);
-  }
-
 }

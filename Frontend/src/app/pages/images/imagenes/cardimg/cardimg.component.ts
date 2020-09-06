@@ -11,7 +11,7 @@ import { PostService } from 'src/app/services/post.service';
 })
 export class CardimgComponent implements OnInit {
   @Input('datos') post: Post;
-  images: string[] = [];
+  images = [];
 
   constructor(
     private router: Router,
@@ -19,10 +19,19 @@ export class CardimgComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.listarimagenes(this.post.url);
   }
 
   selectedCard(id: string) {
       this.router.navigate(['/post', id]);
+  }
+
+  listarimagenes(url: string){
+    const imags = url.split(',');
+    const images = [];
+    for(let i = 0; i <= images.length; i++){
+      
+    }
   }
 
 }
