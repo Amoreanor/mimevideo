@@ -6,7 +6,7 @@ import {TokenValidation} from '../lib/verifyToken';
 import multer from '../lib/multer';
 
 router.route('/images')
-    .post(multer.single('file'), createImages);
+    .post(multer.array('files'), createImages);
 router.route('/videos')
     .post(TokenValidation, multer.single('file'), createVideo)
 

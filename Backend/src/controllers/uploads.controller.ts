@@ -3,6 +3,8 @@ import { generatorImages } from '../services/generatorImages.service';
 
 import { connect } from '../database';
 import { Post } from '../interface/Post';
+import { File } from '../interface/File';
+
 import fs from 'fs-extra';
 
 import path from 'path';
@@ -23,7 +25,7 @@ export async function createVideo(req: Request, res: Response): Promise<Response
 
         await conn.query('INSERT INTO videos SET ?', [newPost]);
         return res.json({
-            message: 'Post imagenes creado'
+            message: 'Post de videos creado'
         });
     }
 }
@@ -31,15 +33,14 @@ export async function createVideo(req: Request, res: Response): Promise<Response
 export async function createImages(req: Request, res: Response): Promise<Response>{
     const conn = await connect();
     const newPost: Post = req.body;
-    console.log(req.body)
-    console.log(req.file)
 
-    if (!req.file) return res.send('Please upload a file')
-    else{
-        newPost.url = req.file.path;
-        await conn.query('INSERT INTO videos SET ?', [newPost]);
-        return res.json({
-            message: 'Post video creado'
-        });
-    }
+    if (!req.files) return res.send('Please upload a file');
+
+    const files = req.files as File[];
+    const paths = files.map((file) => file.path);
+    newPost.url = paths.toString();
+    await conn.query('INSERT INTO videos SET ?', [newPost]);
+    return res.json({
+        message: 'Post Imagenes creado'
+    });
 }

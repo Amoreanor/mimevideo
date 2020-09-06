@@ -12,14 +12,13 @@
                         <textarea class="form-control" id="" rows="2" placeholder="Descripcion" required #description></textarea>
                     </div>
 
-                    
-                    <div (click)="botton()" class="centered" required>  
+                    <div (click)="botton()" class="centered" required>
                         <div class="plus"  id="plus">
-                          <div class="plus__line plus__line--v">
+                        <div class="plus__line plus__line--v">
                             <a class="plus__link fa fa-film" (click)="fileVideo.click()">
                                 <input (click)="botton()" type="file" class="d-none" (change)="onFileSelect($event)" #fileVideo></a>
                             <a class="plus__link fa fa-camera" (click)="fileImage.click()">
-                                <input (click)="botton()" type="file" class="d-none" (change)="onFileSelect($event)" #fileImage></a>
+                                <input multiple (click)="botton() && files = []" type="file" class="d-none" (change)="onMultipleFileSelect($event)" #fileImage></a>
                           </div>
                           <div class="plus__line plus__line--h"></div>
                         </div>

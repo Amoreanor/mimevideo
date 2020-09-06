@@ -7,6 +7,8 @@ CREATE TABLE videos(
     title VARCHAR(200) NOT NULL,
     description TEXT NOT NULL,
     url TEXT NOT NULL,
+    tipo VARCHAR(50) NOT NULL,
+    iduser int(11),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -17,5 +19,7 @@ CREATE TABLE users(
     password VARCHAR(100) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+ALTER TABLE `user` ADD FOREIGN KEY (`id`) REFERENCES `videos` (`userid`);
 
 DESCRIBE videos;

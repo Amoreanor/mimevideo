@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { PostService } from '../../services/post.service';
+import { fileItem } from './models/itemFile';
 
 interface HtmlInputEvent extends Event {
   target: HTMLInputElement & EventTarget
@@ -13,7 +14,11 @@ interface HtmlInputEvent extends Event {
 })
 export class UploadsComponent implements OnInit {
 
-  file: File;
+  files: FileList;
+  isOverDrop = false;
+
+  file: File ;
+  multipleFile: FileList;
   fileSelected:string | ArrayBuffer;
 
 
@@ -33,24 +38,30 @@ export class UploadsComponent implements OnInit {
     }
   }
 
+  onMultipleFileSelect(event: HtmlInputEvent): void{
+    const files = event.target.files;
+    if(event.target.files && event.target.files ){
+      this.multipleFile = event.target.files;
+    }
+  }
+
+
   uploadFile(title: HTMLInputElement, description: HTMLTextAreaElement): boolean{
-    if(this.file.type == "video/mp4"){
+    if(this.file != undefined && this.file.type === "video/mp4"){
       console.log('Entro a video')
       this.postService.createVideo(title.value, description.value, this.file)
       .subscribe(res => console.log(res), err => console.log(err) )
     }else{
-      console.log('Entro a imagen: '+this.file)
-      this.postService.createImages(title.value, description.value, this.file)
+      console.log(this.multipleFile)
+      this.postService.createImages(title.value, description.value, this.multipleFile)
       .subscribe(res => console.log(res), err => console.log(err) )
     }
-    
       return false;
   }
 
   botton(event: HtmlInputEvent){
     var plus = document.getElementById('plus');
     plus.classList.toggle('plus--active');
-    
   }
 
 }

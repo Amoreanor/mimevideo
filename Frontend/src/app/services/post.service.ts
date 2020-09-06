@@ -3,8 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { formatDate } from '@angular/common';
 
 import { Post } from '../interfaces/Post';
-//import { promise } from 'protractor';
 import { Observable } from 'rxjs';
+import { fileItem } from '../pages/uploads/models/itemFile';
 
 @Injectable({
   providedIn: 'root'
@@ -16,11 +16,13 @@ export class PostService {
 
   constructor(private http: HttpClient) { }
 
-  createImages(title: string, description: string, file: File){
+  createImages(title: string, description: string, files: FileList){
     const fd = new FormData();
     fd.append('title', title);
     fd.append('description', description);
-    fd.append('file', file);
+    for (let i = 0; i < files.length; i++) {
+      fd.append('files', files[i])
+    }
     return this.http.post(this.URIV+'/uploads/images', fd);
   }
 

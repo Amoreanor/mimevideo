@@ -61,7 +61,10 @@ export class PostComponent implements OnInit {
   }
 
   selectedCard(id: string) {
-    this.router.navigate(['/post', id]);
+    //this.post.tipo = video
+      this.router.navigate(['/post', id]);
+    //
+
   }
 
 }

@@ -16,6 +16,7 @@ import { PostComponent } from './pages/home/post/post.component';
 
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
+import { UploadsfileDirective } from './pages/uploads/directives/uploadsfile.directive';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
     SignupComponent,
     HomeComponent,
     PostComponent,
+    UploadsfileDirective,
   ],
   imports: [
     BrowserModule,
