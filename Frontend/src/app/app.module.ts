@@ -17,6 +17,9 @@ import { PostComponent } from './pages/home/post/post.component';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { UploadsfileDirective } from './pages/uploads/directives/uploadsfile.directive';
+import { ImagenesComponent } from './pages/images/imagenes/imagenes.component';
+import { ImagenComponent } from './pages/images/imagen/imagen.component';
+import { CardimgComponent } from './pages/images/imagenes/cardimg/cardimg.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,9 @@ import { UploadsfileDirective } from './pages/uploads/directives/uploadsfile.dir
     HomeComponent,
     PostComponent,
     UploadsfileDirective,
+    ImagenesComponent,
+    ImagenComponent,
+    CardimgComponent,
   ],
   imports: [
     BrowserModule,

@@ -27,11 +27,6 @@ export class PostPreviewComponent implements OnInit {
           .subscribe(
           res => {
             this.post = res;
-            // si es video
-            // validPermisos this.post.url
-            // trakeo User
-            // valido colombia
-            // if() cokkie == token
           },
           error => console.log(error)
           )

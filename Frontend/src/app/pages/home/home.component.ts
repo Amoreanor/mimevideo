@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     const data = 'some text';
-    const obs = this.postService.getPosts();
+    let obs = this.postService.getPosts();
     obs.subscribe(
       (res : Post[]) => {
         this.posts = res;
@@ -35,9 +35,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }
 
   ngAfterViewInit() {
-  }
-
-  bloburl(){
   }
 
 }

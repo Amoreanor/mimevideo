@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import {PostListComponent} from './pages/post-list/post-list.component';
+
+import { ImagenesComponent } from './pages/images/imagenes/imagenes.component';
+
 import {UploadsComponent} from './pages/uploads/uploads.component';
 import {PostPreviewComponent} from './pages/post-preview/post-preview.component';
 import {SigninComponent} from './pages/auth/signin/signin.component';
@@ -9,6 +12,7 @@ import {SignupComponent} from './pages/auth/signup/signup.component';
 import {HomeComponent} from './pages/home/home.component';
 
 import { AuthGuard } from './auth.guard';
+import { from } from 'rxjs';
 
 const routes: Routes = [
   {
@@ -18,6 +22,10 @@ const routes: Routes = [
   {
     path: 'post',
     component: PostListComponent
+  },
+  {
+    path: 'imagenes',
+    component: ImagenesComponent
   },
   {
     path: 'post/uploads',
