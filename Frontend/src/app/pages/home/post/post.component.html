@@ -1,5 +1,5 @@
 <ng-container *ngIf="post.tipo == 'video'; else imagen" >
-    <div class="card text-center shadow  rounded" (click)="selectedCard(post.id)">
+    <div class="card text-center shadow  rounded" (click)="selectedCard(post.id, post.tipo)">
         <div class="card-group m-0" >
             <div class="date">
                 <div class="day">24</div>
@@ -22,7 +22,7 @@
     </div>
 </ng-container>
 <ng-container *ngIf="post.tipo == 'images'; else imagen" >
-    <div class="card text-center shadow  rounded" (click)="selectedCard(post.id)">
+    <div class="card text-center shadow  rounded" (click)="selectedCard(post.id, post.tipo)">
         <div class="card-group m-0" >
             <div class="date">
                 <div class="day">24</div>

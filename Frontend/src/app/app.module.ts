@@ -19,6 +19,7 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
 import { UploadsfileDirective } from './pages/uploads/directives/uploadsfile.directive';
 import { ImagenesComponent } from './pages/images/imagenes/imagenes.component';
 import { CardimgComponent } from './pages/images/imagenes/cardimg/cardimg.component';
+import { ImagesPreviewComponent } from './pages/images/images-preview/images-preview.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { CardimgComponent } from './pages/images/imagenes/cardimg/cardimg.compon
     UploadsfileDirective,
     ImagenesComponent,
     CardimgComponent,
+    ImagesPreviewComponent,
   ],
   imports: [
     BrowserModule,

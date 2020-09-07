@@ -69,11 +69,14 @@ export class PostComponent implements OnInit {
     this.images2 = url.split(',');
   }
 
-  selectedCard(id: string) {
-    //this.post.tipo = video
-      this.router.navigate(['/post', id]);
-    //
+  selectedCard(id: string, tipo: string) {
+    if(tipo == 'video'){
+      console.log('video: '+tipo)
+      this.router.navigate(['/post', id]);}
 
+    if(tipo == 'images'){
+      console.log('images: '+tipo)
+      this.router.navigate(['/imagenes', id]);}
   }
 
 }

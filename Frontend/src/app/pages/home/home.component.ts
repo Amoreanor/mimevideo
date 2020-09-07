@@ -24,7 +24,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    const data = 'some text';
     let obs = this.postService.getPosts();
     obs.subscribe(
       (res : Post[]) => {
