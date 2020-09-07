@@ -4,6 +4,10 @@
     height: auto;
 }
 
+.image {
+    height: 250px;
+}
+
 h5{
     color: #FFF;
     font-weight: bold; 

@@ -15,7 +15,7 @@ export class PostComponent implements OnInit {
 
   @Input('datos') post: Post;
   images: string[] = [];
-  URI = 'http://localhost:3000/';
+  images2 = [];
 
   constructor(
     private router: Router,
@@ -25,8 +25,13 @@ export class PostComponent implements OnInit {
   }
 
   async ngOnInit() {
-    const videoBlob = await this.createVideoBlob(this.post.url);
-    this.generateListImages(videoBlob);
+    if(this.post.tipo == 'images'){
+      this.listarimagenes(this.post.url);
+    }
+    if(this.post.tipo == 'video'){
+      const videoBlob = await this.createVideoBlob(this.post.url);
+      this.generateListImages(videoBlob);
+    }
   }
 
   createVideoBlob(urlVideo: string): Promise<Blob> {
@@ -52,12 +57,16 @@ export class PostComponent implements OnInit {
     const images = [];
     let durationList = [0, 50, 100];
     let image = this.post.url;
-    for(let i = 1; i <= 3; i++) {
-      const list = image.split('\\');
-      const urlimg = this.URI+list[0]+'\\thumbail\\'+list[1].slice(0,-4)+'_'+i+'.png';
-      images.push(urlimg);
-    }
+      for(let i = 1; i <= 3; i++) {
+        const list = image.split('\\');
+        const urlimg = list[0]+'\\thumbail\\'+list[1].slice(0,-4)+'_'+i+'.png';
+        images.push(urlimg);
+      }
     this.images = images;
+  }
+
+  listarimagenes(url: string){
+    this.images2 = url.split(',');
   }
 
   selectedCard(id: string) {

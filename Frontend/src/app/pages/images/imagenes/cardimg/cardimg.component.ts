@@ -27,11 +27,7 @@ export class CardimgComponent implements OnInit {
   }
 
   listarimagenes(url: string){
-    const imags = url.split(',');
-    const images = [];
-    for(let i = 0; i <= images.length; i++){
-      
-    }
+    this.images = url.split(',');
   }
 
 }

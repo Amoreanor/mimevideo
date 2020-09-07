@@ -18,7 +18,6 @@ import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { UploadsfileDirective } from './pages/uploads/directives/uploadsfile.directive';
 import { ImagenesComponent } from './pages/images/imagenes/imagenes.component';
-import { ImagenComponent } from './pages/images/imagen/imagen.component';
 import { CardimgComponent } from './pages/images/imagenes/cardimg/cardimg.component';
 
 @NgModule({
@@ -34,7 +33,6 @@ import { CardimgComponent } from './pages/images/imagenes/cardimg/cardimg.compon
     PostComponent,
     UploadsfileDirective,
     ImagenesComponent,
-    ImagenComponent,
     CardimgComponent,
   ],
   imports: [
