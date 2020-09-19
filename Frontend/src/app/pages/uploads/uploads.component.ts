@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { PostService } from '../../services/post.service';
 import { fileItem } from './models/itemFile';
+import { TokenInterceptorService } from 'src/app/services/token-interceptor.service';
 
 interface HtmlInputEvent extends Event {
   target: HTMLInputElement & EventTarget
@@ -20,6 +21,7 @@ export class UploadsComponent implements OnInit {
   file: File ;
   multipleFile: FileList;
   fileSelected:string | ArrayBuffer;
+  tipo: string;
 
 
   constructor(private postService: PostService) { }
@@ -34,7 +36,6 @@ export class UploadsComponent implements OnInit {
       const reader =  new FileReader();
       reader.onload = e => this.fileSelected = reader.result;
       reader.readAsDataURL(this.file);
-      console.log(this.file)
     }
   }
 
@@ -49,11 +50,13 @@ export class UploadsComponent implements OnInit {
   uploadFile(title: HTMLInputElement, description: HTMLTextAreaElement): boolean{
     if(this.file != undefined && this.file.type === "video/mp4"){
       console.log('Entro a video')
-      this.postService.createVideo(title.value, description.value, this.file)
+      this.tipo = 'video';
+      this.postService.createVideo(title.value, description.value, this.file,  this.tipo)
       .subscribe(res => console.log(res), err => console.log(err) )
     }else{
-      console.log(this.multipleFile)
-      this.postService.createImages(title.value, description.value, this.multipleFile)
+      console.log('Entro a Imagenes')
+      this.tipo = 'images';
+      this.postService.createImages(title.value, description.value, this.multipleFile, this.tipo)
       .subscribe(res => console.log(res), err => console.log(err) )
     }
       return false;

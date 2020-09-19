@@ -55,7 +55,6 @@ export class PostComponent implements OnInit {
 
   generateListImages(videoBlob) {
     const images = [];
-    let durationList = [0, 50, 100];
     let image = this.post.url;
       for(let i = 1; i <= 3; i++) {
         const list = image.split('\\');
@@ -66,7 +65,17 @@ export class PostComponent implements OnInit {
   }
 
   listarimagenes(url: string){
-    this.images2 = url.split(',');
+    const lista = url.split(',');
+    let lista2 = [];
+
+    for(let i = 0; i<3;i++){
+      if(lista[i] === undefined){}
+      else{
+        const url = lista[i];
+        lista2.push(url);
+      }
+    }
+    this.images2 = lista2;
   }
 
   selectedCard(id: string, tipo: string) {

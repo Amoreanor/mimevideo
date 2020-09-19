@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ViewEncapsulation } from '@angular/compiler/src/core';
 import { PostService } from '../../services/post.service';
 
 import { Post } from '../../interfaces/Post';
@@ -7,7 +8,8 @@ import { Post } from '../../interfaces/Post';
 @Component({
   selector: 'app-post-preview',
   templateUrl: './post-preview.component.html',
-  styleUrls: ['./post-preview.component.css']
+  styleUrls: ['./post-preview.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class PostPreviewComponent implements OnInit {
 
@@ -20,7 +22,7 @@ export class PostPreviewComponent implements OnInit {
     private postService: PostService
   ) { }
 
-  ngOnInit() {  
+  ngOnInit() {
     this.activeRoute.params.subscribe(params =>{
       this.id = params['id'];
       this.postService.getPost(this.id)

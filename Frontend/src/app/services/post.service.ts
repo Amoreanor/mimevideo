@@ -16,21 +16,23 @@ export class PostService {
 
   constructor(private http: HttpClient) { }
 
-  createImages(title: string, description: string, files: FileList){
+  createImages(title: string, description: string, files: FileList, tipo: string){
     const fd = new FormData();
     fd.append('title', title);
     fd.append('description', description);
+    fd.append('tipo', tipo);
     for (let i = 0; i < files.length; i++) {
       fd.append('files', files[i])
     }
     return this.http.post(this.URIV+'/uploads/images', fd);
   }
 
-  createVideo(title: string, description: string, file: File){
+  createVideo(title: string, description: string, file: File, tipo: string){
     const fd = new FormData();
     fd.append('title', title);
     fd.append('description', description);
     fd.append('file', file);
+    fd.append('tipo', tipo);
     return this.http.post(this.URIV+'/uploads/videos', fd);
   }
 

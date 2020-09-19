@@ -20,6 +20,8 @@ import { UploadsfileDirective } from './pages/uploads/directives/uploadsfile.dir
 import { ImagenesComponent } from './pages/images/imagenes/imagenes.component';
 import { CardimgComponent } from './pages/images/imagenes/cardimg/cardimg.component';
 import { ImagesPreviewComponent } from './pages/images/images-preview/images-preview.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { ButtonbarComponent } from './components/buttonbar/buttonbar.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { ImagesPreviewComponent } from './pages/images/images-preview/images-pre
     ImagenesComponent,
     CardimgComponent,
     ImagesPreviewComponent,
+    SidebarComponent,
+    ButtonbarComponent,
   ],
   imports: [
     BrowserModule,

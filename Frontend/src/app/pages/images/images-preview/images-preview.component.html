@@ -6,7 +6,7 @@
     <br>
     <div class="container">
         <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-9">
                 <div class="" *ngFor="let image of images">
                     <img class="card-img-top" [src]="'http://localhost:3000/'+image" />
                 </div>
@@ -18,14 +18,15 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <h1>Mas contenido</h1>
-                <ul>
-                    <li>Videos Nuevos</li>
-                    <li>Videos Populares</li>
-                    <li>Videos de lo mejor</li>
-                </ul>
+                <app-sidebar></app-sidebar>
             </div>
+        </div>
+        <br>
+        <div>
+            <!-- <h2>Videos Relacionados</h2>
+            <app-buttonbar></app-buttonbar> -->
         </div>
     </div>
 </ng-template>
