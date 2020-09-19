@@ -1,55 +1,36 @@
-<div class="row" *ngIf="!post; else main_content">
+<div class="row" [hidden]="post">
     <h1>Loading...</h1>
 </div>
 
-<ng-template #main_content>
-    <br>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-9">
-                <video
-                    #target
-                    class="video-js vjs-default-skin vjs-big-play-centered vjs-16-9 card-img-top"
-                    controls
-                    muted
-                    playsinline
-                    preload="none"
-                    >
-                </video>
-                <div class="">
-                    <video
-                    id="videojs"
-                    class="video-js vjs-default-skin vjs-big-play-centered vjs-16-9 card-img-top"
-                    controls
-                    preload="auto"
-                    oncontextmenu="return false;"
-                    data-setup="{}"
-                    >
-                        <source [src]="'http://localhost:3000/'+ post.url" type="video/mp4">
-                    </video>
-                    <script>
-                        var reproductor = videojs('videojs',{
-                            fluid: true,
-                        });
-                    </script>
-                </div>
-                <h1>{{post.title}}</h1>
-                <p>{{post.description}}</p>
-                <div class="col-md-7">
-                    <div class="card">
-                        <form action=""></form>
-                    </div>
+<div [hidden]="!post" class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <video
+                id='target'
+                #target
+                class="video-js vjs-default-skin vjs-big-play-centered vjs-16-9 card-img-top"
+                controls
+                oncontextmenu="return false;"
+                playsinline
+                preload="auto"
+                >
+            </video>
+            <div class="col-md-7">
+                <h1>{{post?.title}}</h1>
+                <p>{{post?.description}}</p>
+                <div class="card">
+                    <form action=""></form>
                 </div>
             </div>
-            <!-- <div class="col-md-3">
-                <h1>Mas contenido</h1>
-                <app-sidebar></app-sidebar>
-            </div> -->
         </div>
-        <br>
-        <div>
-            <!-- <h2>Videos Relacionados</h2>
-            <app-buttonbar></app-buttonbar> -->
-        </div>
+        <!-- <div class="col-md-3">
+            <h1>Mas contenido</h1>
+            <app-sidebar></app-sidebar>
+        </div> -->
     </div>
-</ng-template>
+    <br>
+    <div>
+        <!-- <h2>Videos Relacionados</h2>
+        <app-buttonbar></app-buttonbar> -->
+    </div>
+</div>
