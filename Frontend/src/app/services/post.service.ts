@@ -5,14 +5,17 @@ import { formatDate } from '@angular/common';
 import { Post } from '../interfaces/Post';
 import { Observable } from 'rxjs';
 import { fileItem } from '../pages/uploads/models/itemFile';
+import { environment } from '../../environments/environment.prod'
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
 
-  URI = 'http://localhost:3000/posts';
-  URIV = 'http://localhost:3000';
+  URL = environment.server;
+
+  URI = this.URL+'/posts';
+  URIV = this.URL;
 
   constructor(private http: HttpClient) { }
 
@@ -37,7 +40,6 @@ export class PostService {
   }
 
   getPosts(): Observable<Post[]> {
-    //const urlblob = "";
     return this.http.get<Post[]>(this.URI);
   }
 

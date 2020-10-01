@@ -1,6 +1,6 @@
 <div class="card text-center card-video" (click)="selectedCard(post.id)">
     <div class="embed-responsive">
-        <img class="card-img-top" [src]="'http://localhost:3000/'+images[0]" /> 
+        <img class="card-img-top" [src]="URL+'/'+images[0]" />
     </div>
     <div class="card-body" style="padding: 0% 2% 0% 2%;">
         <h5  style=" font-weight: bold; border-bottom: 1px solid rgba(121, 121, 121, 0.5);" >{{post.title}}</h5 >

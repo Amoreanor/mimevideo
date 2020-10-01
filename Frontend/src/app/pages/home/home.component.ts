@@ -16,6 +16,7 @@ import { Url } from 'url';
 export class HomeComponent implements OnInit, AfterViewInit {
 
   posts: Post[];
+  p: number = 1;
 
   @ViewChildren(PostComponent)
   news: QueryList<PostComponent>;

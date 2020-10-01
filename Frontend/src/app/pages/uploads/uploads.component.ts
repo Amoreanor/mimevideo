@@ -14,8 +14,6 @@ interface HtmlInputEvent extends Event {
   styleUrls: ['./uploads.component.css']
 })
 export class UploadsComponent implements OnInit {
-
-  files: FileList;
   isOverDrop = false;
 
   file: File ;
@@ -40,7 +38,6 @@ export class UploadsComponent implements OnInit {
   }
 
   onMultipleFileSelect(event: HtmlInputEvent): void{
-    const files = event.target.files;
     if(event.target.files && event.target.files ){
       this.multipleFile = event.target.files;
     }

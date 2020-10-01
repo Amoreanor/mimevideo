@@ -5,12 +5,16 @@ import { Router } from '@angular/router'
 import { User } from '../../app/interfaces/User';
 import { Observable } from 'rxjs';
 
+import { environment } from '../../environments/environment.prod';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private URI = 'http://localhost:3000/users';
+  private URL = environment;
+
+  private URI = URL+'/users';
 
   constructor(
     private http: HttpClient,

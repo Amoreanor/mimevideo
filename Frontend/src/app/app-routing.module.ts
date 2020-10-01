@@ -1,13 +1,7 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
-import {PostListComponent} from './pages/post-list/post-list.component';
-
-import { ImagenesComponent } from './pages/images/imagenes/imagenes.component';
-import { ImagesPreviewComponent } from './pages/images/images-preview/images-preview.component';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
 import {UploadsComponent} from './pages/uploads/uploads.component';
-import {PostPreviewComponent} from './pages/post-preview/post-preview.component';
 import {SigninComponent} from './pages/auth/signin/signin.component';
 import {SignupComponent} from './pages/auth/signup/signup.component';
 import {HomeComponent} from './pages/home/home.component';
@@ -22,24 +16,16 @@ const routes: Routes = [
   },
   {
     path: 'videos',
-    component: PostListComponent
+    loadChildren: './pages/videos/videos.module#VideosModule'
   },
   {
     path: 'imagenes',
-    component: ImagenesComponent
+    loadChildren: './pages/images/images.module#ImagesModule'
   },
   {
     path: 'post/uploads',
     component: UploadsComponent,
     canActivate: [AuthGuard]
-  },
-  {
-    path: 'post/:id',
-    component: PostPreviewComponent
-  },
-  {
-    path: 'imagenes/:id',
-    component: ImagesPreviewComponent
   },
   {
     path: '',
@@ -58,7 +44,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, {
+      enableTracing: true,
+      preloadingStrategy: PreloadAllModules
+    }
+  )],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

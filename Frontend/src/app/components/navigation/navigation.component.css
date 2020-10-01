@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+
+
+header{
+	height: auto;
+}
+
+a {
+  text-decoration: none;
+  -webkit-text-decoration-skip: objects;
+}
+
+.logo{
+	margin-left: 8%;
+}
+
+.logo img{
+	display: block;
+	margin: 4px;
+  height: auto;
+	float: left;
+}
+
+.principal-title{
+  font-family: 'Great Vibes', cursive;
+  font-size: 60px;
+  font-weight: 600;
+  line-height: 70px;
+  padding: 1% 0% 0% 0%;
+}
+
+h1{
+  line-height: 35px;
+  font-family: 'Tenali Ramakrishna', sans-serif;
+}
+
+.fixed{position:fixed; top:0}
+
+.topnav {
+  z-index: 999;
+  overflow: hidden;
+  width: 100%;
+  font-family: 'Questrial', sans-serif;
+  background: #333;
+  border-top: solid 6px #e8b50c;
+}
+.topnav div div ul li a{
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 6px 30px;
+    text-decoration: none;
+    font-size: 17px;
+    border-right: 1px solid #111;
+    box-sizing: border-box;
+}
+  .topnav a:hover {
+    background: #000;
+    text-decoration: none;
+}
+  .active {
+    color: #fff!important;
+   background-color: #111;
+}

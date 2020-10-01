@@ -26,4 +26,6 @@ export class ButtonbarComponent implements OnInit {
     )
   }
 
+  selectedCard(id: string){}
+
 }

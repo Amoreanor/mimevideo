@@ -1,16 +1,15 @@
-<nav class="navbar navbar-expand-xl navbar-dark bg-dark" style="border-bottom: 1px solid rgba(121, 121, 121, 0.5);">
+<header>
+    <div class="logo">
+    <img src="img/logo.png" alt="">
+    </div>
+    <h1 class="principal-title">MIME</h1>
+</header>
+<nav class="navbar-expand-xl topnav" style="border-bottom: 1px solid rgba(121, 121, 121, 0.5);">
     <div class="container">
-        <a class="navbar-brand" routerLink="/">
-            <img src="" width="40" height="40" class="d-inline-block align-top" alt="">
-            Mimevideo
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-xl-5 mr-auto">
                 <li class="nav-item">
-                <a class="nav-link" routerLink="/inicio" routerLinkActive="active">Inicio <span class="sr-only">(current)</span></a>
+                <a class="nav-link" routerLink="/inicio" routerLinkActive="active">Inicio<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                 <a class="nav-link" routerLink="/populares" routerLinkActive="active">Populares</a>
@@ -24,7 +23,6 @@
             </ul>
             <ul class="navbar-nav ml-auto">
                 <ng-container *ngIf="!authService.loggedIn(); else loggedIn" >
-                    <h5 ><a style="color: #FFF; font-weight: bold;" href="#">Disfruta nuevos videos todos los viernes</a></h5>
                 </ng-container>
                 <ng-template #loggedIn>
                     <li class="nav-item" >
@@ -37,4 +35,4 @@
             </ul>
         </div>
     </div>
-  </nav>
+</nav>

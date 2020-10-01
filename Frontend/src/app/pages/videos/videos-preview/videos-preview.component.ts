@@ -1,19 +1,22 @@
 import videojs from 'video.js';
-import { Component, ElementRef, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Component, ElementRef, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
-import { PostService } from '../../services/post.service';
+import { PostService } from '../../../services/post.service';
 
-import { Post } from '../../interfaces/Post';
+import { Post } from '../../../interfaces/Post';
+import { environment } from '../../../../environments/environment.prod'
 
 @Component({
   selector: 'app-post-preview',
-  templateUrl: './post-preview.component.html',
-  styleUrls: ['./post-preview.component.css'],
+  templateUrl: './videos-preview.component.html',
+  styleUrls: ['./videos-preview.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class PostPreviewComponent implements OnDestroy, AfterViewInit {
+export class VideosPreviewComponent implements OnDestroy, AfterViewInit {
   @ViewChild('target', { static: false }) target: ElementRef;
+
+  URL = environment.server;
 
   id: string;
   post: Post;
@@ -50,7 +53,7 @@ export class PostPreviewComponent implements OnDestroy, AfterViewInit {
               aspectRatio: '16:9',
               autoplay: false,
               sources: [{
-                  src: 'http://localhost:3000/'+ this.post.url,
+                  src: this.URL+'/'+ this.post.url,
                   type: 'video/mp4',
               }]
             };

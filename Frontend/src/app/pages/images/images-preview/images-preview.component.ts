@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from 'src/app/services/post.service';
 import { Post } from 'src/app/interfaces/Post';
 
+import { environment } from '../../../../environments/environment.prod';
+
 @Component({
   selector: 'app-images-preview',
   templateUrl: './images-preview.component.html',
@@ -10,6 +12,8 @@ import { Post } from 'src/app/interfaces/Post';
 })
 export class ImagesPreviewComponent implements OnInit {
   
+  URL = environment.server;
+
   id: string;
   post: Post;
   images = [];

@@ -1,17 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 
-import { PostService } from '../../services/post.service';
-import {Router, Route} from '@angular/router';
+import { PostService } from '../../../services/post.service';
+import {Router} from '@angular/router';
 
-import { Post } from '../../interfaces/Post';
+import { Post } from '../../../interfaces/Post';
+import { environment } from '../../../../environments/environment.prod';
 
 @Component({
-  selector: 'app-post-list',
-  templateUrl: './post-list.component.html',
-  styleUrls: ['./post-list.component.css']
+  selector: 'app-videos',
+  templateUrl: './videos.component.html',
+  styleUrls: ['./videos.component.css']
 })
-export class PostListComponent implements OnInit {
+export class VideosComponent implements OnInit {
 
+  URL = environment.server;
   posts = [];
 
   constructor(private postService: PostService, private router: Router) { }
@@ -34,6 +36,7 @@ export class PostListComponent implements OnInit {
   }
 
   selectedCard(id: string){
-    this.router.navigate(['/post', id]);
+    this.router.navigate(['/videos', id]);
   }
+
 }

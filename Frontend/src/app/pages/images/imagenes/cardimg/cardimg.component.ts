@@ -3,6 +3,7 @@ import { Post } from 'src/app/interfaces/Post';
 
 import { Router } from '@angular/router';
 import { PostService } from 'src/app/services/post.service';
+import { environment } from '../../../../../environments/environment.prod';
 
 @Component({
   selector: 'app-cardimg',
@@ -12,6 +13,8 @@ import { PostService } from 'src/app/services/post.service';
 export class CardimgComponent implements OnInit {
   @Input('datos') post: Post;
   images = [];
+
+  URL = environment.server;
 
   constructor(
     private router: Router,
@@ -23,7 +26,7 @@ export class CardimgComponent implements OnInit {
   }
 
   selectedCard(id: string) {
-      this.router.navigate(['/post', id]);
+      this.router.navigate(['/imagenes', id]);
   }
 
   listarimagenes(url: string){

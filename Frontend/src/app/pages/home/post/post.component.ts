@@ -6,16 +6,19 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ImageService } from 'src/app/services/image.service';
 import { Observable } from 'rxjs';
 
+import { environment } from '../../../../environments/environment.prod';
+
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
-
   @Input('datos') post: Post;
   images: string[] = [];
   images2 = [];
+  
+  URL = environment.server;
 
   constructor(
     private router: Router,
@@ -26,10 +29,10 @@ export class PostComponent implements OnInit {
 
   async ngOnInit() {
     if(this.post.tipo == 'images'){
-      this.listarimagenes(this.post.url);
+      await this.listarimagenes(this.post.url);
     }
     if(this.post.tipo == 'video'){
-      const videoBlob = await this.createVideoBlob(this.post.url);
+      const videoBlob = this.createVideoBlob(this.post.url);
       this.generateListImages(videoBlob);
     }
   }
@@ -42,16 +45,6 @@ export class PostComponent implements OnInit {
         });
     })
   }
-
-  // async generateListImages(videoBlob) {
-  //   const images = [];
-  //   let durationList = [0, 50, 100];
-  //   for(let i = 0; i < 3; i++) {
-  //     let image = await this.imageService.generateImages(videoBlob, durationList[i]);
-  //     images.push(image);
-  //   }
-  //   this.images = images;
-  // }
 
   generateListImages(videoBlob) {
     const images = [];
@@ -80,12 +73,12 @@ export class PostComponent implements OnInit {
 
   selectedCard(id: string, tipo: string) {
     if(tipo == 'video'){
-      console.log('video: '+tipo)
-      this.router.navigate(['/post', id]);}
+      this.router.navigate(['/videos', id]);}
 
     if(tipo == 'images'){
-      console.log('images: '+tipo)
       this.router.navigate(['/imagenes', id]);}
   }
+
+
 
 }

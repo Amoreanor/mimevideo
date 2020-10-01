@@ -7,13 +7,12 @@
 .card-video:hover{
     border: 1px solid #FFF;
     opacity: 0.9;
-    
 }
 .card-video video{
     -moz-transition: all 0.3s linear 0s;
-  	-ms-transition: all 0.3s linear 0s;
-  	-o-transition: all 0.3s linear 0s;
-  	transition: all 0.3s linear 0s;
+    -ms-transition: all 0.3s linear 0s;
+    -o-transition: all 0.3s linear 0s;
+    transition: all 0.3s linear 0s;
 }
 
 .card-video video:hover{
@@ -52,7 +51,7 @@
     .card-body h5{
         font-size: 16px;
     }
-  }
+}
 
 @media only screen and (max-width: 767px) {
     /* For tablets: */
@@ -60,9 +59,9 @@
         height: 20%;
     }
 
-  }
+}
 
-  @media only screen and (max-width: 430px) {
+@media only screen and (max-width: 430px) {
     /* For tablets: */
     .card-body{
         height: 20%;
@@ -73,12 +72,11 @@
     .card-body p{
         font-size: 12px;
     }
-  }
+}
 
-  @media only screen and (max-width: 340px) {
+@media only screen and (max-width: 340px) {
     /* For tablets: */
     .card-body{height: 20%}
     .card-body h5{font-size: 10px}
     .card-body p{font-size: 0px}
-  }
-  
+}
