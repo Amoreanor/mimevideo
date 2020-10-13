@@ -34,7 +34,7 @@ export async function createImages(req: Request, res: Response): Promise<Respons
     const conn = await connect();
     const newPost: Post = req.body;
 
-    if (!req.files) return res.send('Please upload a file');
+    if (!req.files) return res.send('Please upload a files');
 
     const files = req.files as File[];
     const paths = files.map((file) => file.path);
