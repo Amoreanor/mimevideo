@@ -33,7 +33,7 @@ export async function createVideo(req: Request, res: Response): Promise<Response
 export async function createImages(req: Request, res: Response): Promise<Response>{
     const conn = await connect();
     const newPost: Post = req.body;
-
+ 
     if (!req.files) return res.send('Please upload a files');
 
     const files = req.files as File[];

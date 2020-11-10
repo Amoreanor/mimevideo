@@ -31,4 +31,3 @@ export function generatorImages(urlvideo: string): string[] {
     });
     return listImages;
 }
-

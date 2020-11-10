@@ -12,9 +12,9 @@ import { environment } from '../../environments/environment.prod';
 })
 export class AuthService {
 
-  private URL = environment;
+  private URL = environment.server;
 
-  private URI = URL+'/users';
+  private URI = this.URL+'/users';
 
   constructor(
     private http: HttpClient,
