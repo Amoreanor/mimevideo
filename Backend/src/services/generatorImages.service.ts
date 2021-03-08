@@ -27,11 +27,7 @@ export function generatorImages(urlvideo: string): string[] {
         count: 3,
         filename: id,
         folder: 'uploads/thumbail/',
-<<<<<<< HEAD
-        size: '615x350'
-=======
         size: '320x240'
->>>>>>> dec0862536e4d72668fd72c28432ff9f9c523017
     });
     return listImages;
 }
