@@ -6,7 +6,7 @@ import { Post } from '../interface/Post';
 import fs from 'fs-extra';
 
 import path from 'path';
-import { FieldPacket,  } from 'mysql2';
+import { FieldPacket, RowDataPacket } from 'mysql2';
 
 export async function debug(req: Request, res: Response): Promise<Response>{
     return res.json('Probar esto');
@@ -55,8 +55,7 @@ export async function getPost(req: Request, res: Response): Promise<void>{
     const id = req.params.postId;
     const conn = await connect();
 
-    const [rows, fields]: [Post[], FieldPacket[]] =  await conn.query('SELECT * FROM videos WHERE id = ?', [id]);
-
+    const [rows, fields]: [RowDataPacket[], FieldPacket[]] =  await conn.query('SELECT * FROM videos WHERE id = ?', [id]);
     res.json(rows[0]);
 }
 
@@ -65,7 +64,7 @@ export async function deletePost(req: Request, res: Response): Promise<Response>
     const conn = await connect();
 
     const url = await conn.query('SELECT * FROM videos WHERE id = ?', [id]);
-    const [rows, fields]: [Post[], FieldPacket[]] = await conn.execute('SELECT url FROM videos where id = '+ id);
+    const [rows, fields]: [RowDataPacket[], FieldPacket[]] = await conn.execute('SELECT url FROM videos where id = '+ id);
 
     const list = rows[0].url.split('\\');
     const idsucio = list[1];

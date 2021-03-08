@@ -5,7 +5,7 @@ import { Users} from '../interface/Users';
 import { encryptPassword, matchPassword } from '../lib/bcrypt'
 
 import jwt from 'jsonwebtoken';
-import { FieldPacket } from 'mysql2';
+import { FieldPacket, QueryError, RowDataPacket } from 'mysql2';
 
 export async function signupUser(req: Request, res: Response): Promise<Response>{
     const conn = await connect();
@@ -29,7 +29,7 @@ export async function signUser(req: Request, res: Response): Promise<Response>{
 
     //Mejorar Seguridad
     const row = await conn.query('select * from users where name = ?', [newUser.name]);
-    const [rows, fields]: [Users[], FieldPacket[]] = await conn.execute('select * from users where name = ?', [newUser.name]);
+    const [rows, fields]: [RowDataPacket[], FieldPacket[]] = await conn.execute('select * from users where name = ?', [newUser.name]);
 
     if(row.length < 0) return res.status(401).send("Name incorrecto");
 

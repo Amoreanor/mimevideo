@@ -8,7 +8,7 @@ import { File } from '../interface/File';
 import fs from 'fs-extra';
 
 import path from 'path';
-import { FieldPacket,  } from 'mysql2';
+import { FieldPacket, QueryError, RowDataPacket  } from 'mysql2';
 
 //Metodo para probar peticiones
 export async function debug(req: Request, res: Response): Promise<Response>{
