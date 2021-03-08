@@ -17,12 +17,12 @@ export class NavigationComponent implements OnInit {
   menuResposive(){
     const x = document.getElementById('navbarNav');
 
-    if (x.className === "topnav navbar-expand-xl" || x.className === "topnav navbar-expand-xl fixed" ) {
-      x.className += " responsive";
-      console.log('Hola ')
-    } else {
-      x.className = "topnav navbar-expand-xl";
-    }
+    // if (x.className === "topnav navbar-expand-xl" || x.className === "topnav navbar-expand-xl fixed" ) {
+    //   x.className += " responsive";
+    //   console.log(x)
+    // } else {
+    //   x.className = "topnav";
+    // }
 	
 	  document.body.scrollTop = 0;
   	document.documentElement.scrollTop = 0;
